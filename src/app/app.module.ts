@@ -14,10 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { postsReducer } from './store/reducers/post.reducer';
 import { StoreModule} from '@ngrx/store';
 import {HttpClientModule} from '@angular/common/http';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
-import { AdsComponent } from './ads/ads.component';
+import { AdsComponent } from './components/admin/ads/ads.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
@@ -26,6 +26,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { HeaderAdminComponent } from './components/admin/header-admin/header-admin.component';
+import { UnhealthyComponent } from './components/admin/unhealthy/unhealthy.component';
+import { FilteredComponent } from './components/admin/filtered/filtered.component';
+import { ActivationsComponent } from './components/admin/activations/activations.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import {MatButtonModule} from "@angular/material/button";
     SignupComponent,
     HomeComponent,
     AdminComponent,
-    AdsComponent
+    AdsComponent,
+    HeaderAdminComponent,
+    UnhealthyComponent,
+    FilteredComponent,
+    ActivationsComponent
   ],
   imports: [
     BrowserModule,

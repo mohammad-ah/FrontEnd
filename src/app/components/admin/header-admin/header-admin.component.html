@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Admin</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-nav-list class="list-horizontal">
+      <a mat-list-item (click)="adsClicked.emit()" routerLinkActive="active">Ads</a>
+      <a mat-list-item (click)="filteredClicked.emit()" routerLinkActive="active">Filtered</a>
+      <a mat-list-item (click)="unhealthyClicked.emit()" routerLinkActive="active">Unhealthy</a>
+      <a mat-list-item (click)="activationsClicked.emit()" routerLinkActive="active">Activations</a>
+    </mat-nav-list>
+  </mat-toolbar-row>
+</mat-toolbar>

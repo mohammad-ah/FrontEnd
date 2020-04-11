@@ -1,0 +1,10 @@
+<app-header-admin
+  (adsClicked)="openAdsPage()"
+  (filteredClicked)="openFilteredPage()"
+  (unhealthyClicked)="openUnhealthyPage()"
+  (activationsClicked)="openActivationsPage()">
+</app-header-admin>
+<app-ads *ngIf="isAdsPage()"></app-ads>
+<app-filtered *ngIf="isFilteredPage()"></app-filtered>
+<app-unhealthy *ngIf="isUnhealthyPage()"></app-unhealthy>
+<app-activations *ngIf="isActivationsPage()"></app-activations>

@@ -1,5 +1,5 @@
-.example-card{
-  //margin: 10px 0 10px 0;
+.post-card{
+  margin-bottom: -8px;
 }
 
 .example-header-image, .post-header-image {
@@ -25,7 +25,11 @@
   border-top: 1px solid rgba(135, 135, 135, 0.5);
 }
 
-.example-container {
+.action-buttons {
+  border-bottom: 1px solid rgba(135, 135, 135, 0.5);
+}
+
+.comments-container, .new-post-container {
   width: 500px;
   height: auto;
   border: 1px solid rgba(135, 135, 135, 0.5);
@@ -66,4 +70,15 @@
 }
 .post-button {
   vertical-align: bottom;
+}
+
+.comment-content {
+  word-break: break-word;
+}
+.comment-text-area {
+  width: 91%;
+}
+
+.new-post-card mat-card-title {
+  color: #3f51b5;
 }

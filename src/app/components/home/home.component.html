@@ -1,1 +1,52 @@
-<p>home works!</p>
+<mat-sidenav-container class="example-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Post Something</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="">
+        <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="post-header-image"></div>
+        <mat-form-field class="post-text-area" appearance="fill">
+          <mat-label>What you feel?</mat-label>
+          <textarea matInput  matTextareaAutosize="false"
+                    [rows]="6"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="post-action-buttons">
+      <button mat-button color="primary">
+        <label for="fileToUpload">
+          <mat-icon class="add-photo-icon">add_photo_alternate</mat-icon> Add Image
+        </label>
+      </button>
+      <input id="fileToUpload" type="file" accept="image/*" style="display:none;">
+
+      <button mat-button color="primary" class="post-button"><mat-icon>check_box</mat-icon> Post</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-sidenav-container>
+
+
+<mat-sidenav-container class="example-container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
+      <mat-card-title class="title">User Name</mat-card-title>
+      <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon" class="edit-post">
+        <mat-icon>more_vert</mat-icon></button>
+      <div class="remove-post-cont">
+        <button mat-button color="primary" class="remove-post">Delete</button>
+      </div>
+    </mat-card-header>
+    <img mat-card-image class="img-article" src="../../assets/test.jpg" alt="">
+    <mat-card-content>
+      <p>
+        Text Description
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button color="primary"><mat-icon>thumb_up_alt</mat-icon> 12 Likes</button>
+      <button mat-button color="primary"><mat-icon>comment</mat-icon> Comments</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-sidenav-container>

@@ -14,6 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { postsReducer } from './store/reducers/post.reducer';
 import { StoreModule} from '@ngrx/store';
 import {HttpClientModule} from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import { AdsComponent } from './ads/ads.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    AdsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,9 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserAnimationsModule,
     StoreModule.forRoot({
       posts: postsReducer
-    })
+    }),
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

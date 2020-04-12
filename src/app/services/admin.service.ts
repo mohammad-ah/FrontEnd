@@ -11,7 +11,7 @@ export class AdminService {
   getFiltered() {
     this.httpClient.get('http://localhost:3000/admin/filtered')
     .subscribe(
-      data => console.log(data),
+      data => console.log(data['data']),
       error => console.log(error)
     );
   }

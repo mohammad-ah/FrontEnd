@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-filtered',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilteredComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.getFiltered();
   }
 
 }

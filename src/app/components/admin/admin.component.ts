@@ -14,7 +14,7 @@ enum CurrentPage {
 })
 export class AdminComponent implements OnInit {
 
-  currentPage: CurrentPage = CurrentPage.Ads;
+  currentPage: CurrentPage = CurrentPage.Filtered;
 
   constructor() { }
 

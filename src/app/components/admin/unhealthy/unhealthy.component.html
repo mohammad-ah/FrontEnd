@@ -1,1 +1,7 @@
-<p>unhealthy works!</p>
+<mat-card *ngFor="let item of data">
+  <mat-card-title>{{item['userid']['username']}}</mat-card-title>
+  <mat-card-content>{{item['text']}}</mat-card-content>
+  <mat-card-actions>
+    <a mat-button (click)="makeHealthy(item)">Make Healthy</a>
+  </mat-card-actions>
+</mat-card>

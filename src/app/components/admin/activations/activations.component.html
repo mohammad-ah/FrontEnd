@@ -1,1 +1,10 @@
-<p>activations works!</p>
+<mat-card *ngFor="let item of data">
+  <div *ngIf="!item['reviewed']">
+    <mat-card-title>{{item['userid']['username']}}</mat-card-title>
+    <mat-card-subtitle>{{item['userid']['email']}}</mat-card-subtitle>
+    <mat-card-actions>
+      <a mat-button (click)="accept(item)">Accept</a>
+      <a mat-button (click)="refuse(item)">Refuse</a>
+    </mat-card-actions>
+  </div>
+</mat-card>

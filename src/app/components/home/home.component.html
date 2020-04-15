@@ -1,98 +1,102 @@
-<mat-sidenav-container class="new-post-container">
-  <mat-card class="new-post-card">
-    <mat-card-header>
-      <mat-card-title>Post Something</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="">
-        <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="post-header-image"></div>
-        <mat-form-field class="post-text-area" appearance="fill">
-          <mat-label>What you feel?</mat-label>
-          <textarea matInput  matTextareaAutosize="false"
-                    [rows]="6"></textarea>
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions class="post-action-buttons">
-      <button mat-button color="primary">
-        <label for="fileToUpload">
-          <mat-icon class="add-photo-icon">add_photo_alternate</mat-icon> Add Image
-        </label>
-      </button>
-      <input id="fileToUpload" type="file" accept="image/*" style="display:none;">
-
-      <button mat-button color="primary" class="post-button"><mat-icon>check_box</mat-icon> Post</button>
-    </mat-card-actions>
-  </mat-card>
-</mat-sidenav-container>
-
-<div *ngFor="let post of posts | async; let idx = index">
-  <mat-sidenav-container class="comments-container" *ngIf="post.post._id" id="post_{{post.post._id}}">
-    <mat-card class="post-card">
+<div>
+  <mat-sidenav-container class="new-post-container">
+    <mat-card class="new-post-card">
       <mat-card-header>
-        <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
-        <mat-card-title class="title">{{post.post.userid.username}}</mat-card-title>
-        <button mat-icon-button *ngIf="post.post.userid._id === userId" color="primary" aria-label="Example icon-button with a heart icon" class="edit-post"
-                id="post-edit_{{post.post._id}}" (click)="showDeleteSection(idx)">
-          <mat-icon>more_vert</mat-icon></button>
-        <div class="remove-post-cont" id="post-remove_{{post.post._id}}" [hidden]="delIdx !== idx">
-          <button mat-button color="primary" class="remove-post" (click)="deletePost(idx, post.post._id)">Delete</button>
-        </div>
+        <mat-card-title>Post Something</mat-card-title>
       </mat-card-header>
-      <img mat-card-image class="img-article" src="../../assets/test.jpg" alt="">
       <mat-card-content>
-        <p>
-          {{post.post.text}}
-        </p>
+        <div class="">
+          <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="post-header-image"></div>
+          <mat-form-field class="post-text-area" appearance="fill">
+            <mat-label>What you feel?</mat-label>
+            <textarea matInput  matTextareaAutosize="false"
+                      [rows]="6"></textarea>
+          </mat-form-field>
+        </div>
       </mat-card-content>
-      <mat-card-actions class="action-buttons">
-        <button mat-button color="primary" (click)="likeUnlike(idx, post.post._id)"><mat-icon>thumb_up_alt</mat-icon> {{post.post.likes.length}} Likes</button>
-        <button mat-button color="primary" (click)="showCommentsSection(idx)"><mat-icon>comment</mat-icon> Comments</button>
+      <mat-card-actions class="post-action-buttons">
+        <button mat-button color="primary">
+          <label for="fileToUpload">
+            <mat-icon class="add-photo-icon">add_photo_alternate</mat-icon> Add Image
+          </label>
+        </button>
+        <input id="fileToUpload" type="file" accept="image/*" style="display:none;">
+
+        <mat-checkbox color="primary">Notify Followers</mat-checkbox>
+
+        <button mat-button color="primary" class="post-button">Post <mat-icon>near_me</mat-icon></button>
       </mat-card-actions>
     </mat-card>
+  </mat-sidenav-container>
 
-    <div [hidden]="postIdx !== idx">
-      <mat-card class="post-comment">
-        <mat-card-header class="post-comment-header">
-          <mat-card-subtitle>Comment</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="">
-            <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="post-header-image"></div>
-            <mat-form-field class="comment-text-area" appearance="fill">
-              <mat-label>Comment?</mat-label>
-              <textarea matInput  matTextareaAutosize="false" (keyup)="AddComment(idx, post.post._id, $event)"
-                        [rows]="3"></textarea>
-            </mat-form-field>
-          </div>
-        </mat-card-content>
-      </mat-card>
-
-<!--      <div *ngFor="let comment of post.post.comments | async; let idx = index">-->
-
-      <mat-card class="comments-card" *ngFor="let comment of post.post.comments; let cidx = index">
+  <div *ngFor="let post of posts | async; let idx = index">
+    <mat-sidenav-container class="comments-container" *ngIf="post.post._id" id="post_{{post.post._id}}">
+      <mat-card class="post-card">
         <mat-card-header>
           <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
-          <mat-card-subtitle class="title">{{comment.userid.username}}</mat-card-subtitle>
-<!--          <button mat-icon-button *ngIf="comment.userid._id === userId" color="primary" aria-label="Delete comment" class="edit-post">-->
-<!--            <mat-icon>delete</mat-icon></button>-->
+          <mat-card-title class="title">{{post.post.userid.username}}</mat-card-title>
+          <button mat-icon-button *ngIf="post.post.userid._id === userId" color="primary" aria-label="Example icon-button with a heart icon" class="edit-post"
+                  id="post-edit_{{post.post._id}}" (click)="showDeleteSection(idx)">
+            <mat-icon>more_vert</mat-icon></button>
+          <div class="remove-post-cont" id="post-remove_{{post.post._id}}" [hidden]="delIdx !== idx">
+            <button mat-button color="primary" class="remove-post" (click)="deletePost(idx, post.post._id)">Delete</button>
+          </div>
         </mat-card-header>
-        <mat-card-content class="comment-content">
+        <img mat-card-image class="img-article" src="../../assets/test.jpg" alt="">
+        <mat-card-content>
           <p>
-            {{comment.text}}
+            {{post.post.text}}
           </p>
         </mat-card-content>
+        <mat-card-actions class="action-buttons">
+          <button mat-button color="primary" (click)="likeUnlike(idx, post.post._id)"><mat-icon>thumb_up_alt</mat-icon> {{post.post.likes.length}} Likes</button>
+          <button mat-button color="primary" (click)="showCommentsSection(idx)"><mat-icon>comment</mat-icon> Comments</button>
+        </mat-card-actions>
       </mat-card>
-    </div>
 
+      <div [hidden]="postIdx !== idx">
+        <mat-card class="post-comment">
+          <mat-card-header class="post-comment-header">
+            <mat-card-subtitle>Comment</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="">
+              <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="post-header-image"></div>
+              <mat-form-field class="comment-text-area" appearance="fill">
+                <mat-label>Comment?</mat-label>
+                <textarea matInput  matTextareaAutosize="false" (keyup)="AddComment(idx, post.post._id, $event)"
+                          [rows]="3"></textarea>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+  <!--      <div *ngFor="let comment of post.post.comments | async; let idx = index">-->
+
+        <mat-card class="comments-card" *ngFor="let comment of post.post.comments; let cidx = index">
+          <mat-card-header>
+            <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
+            <mat-card-subtitle class="title">{{comment.userid.username}}</mat-card-subtitle>
+  <!--          <button mat-icon-button *ngIf="comment.userid._id === userId" color="primary" aria-label="Delete comment" class="edit-post">-->
+  <!--            <mat-icon>delete</mat-icon></button>-->
+          </mat-card-header>
+          <mat-card-content class="comment-content">
+            <p>
+              {{comment.text}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </mat-sidenav-container>
+  </div>
+
+  <mat-sidenav-container class="load-more">
+    <mat-card class="load-more-content">
+      <mat-card-content>
+        <button mat-icon-button color="primary" aria-label="Load more posts" class="load-more-button" (click)="loadMorePosts()">
+          <mat-icon>refresh</mat-icon></button>
+      </mat-card-content>
+    </mat-card>
   </mat-sidenav-container>
 </div>
-
-<mat-sidenav-container class="load-more">
-  <mat-card class="load-more-content">
-    <mat-card-content>
-      <button mat-icon-button color="primary" aria-label="Load more posts" class="load-more-button" (click)="loadMorePosts()">
-        <mat-icon>refresh</mat-icon></button>
-    </mat-card-content>
-  </mat-card>
-</mat-sidenav-container>

@@ -30,6 +30,7 @@ import { HeaderAdminComponent } from './components/admin/header-admin/header-adm
 import { UnhealthyComponent } from './components/admin/unhealthy/unhealthy.component';
 import { FilteredComponent } from './components/admin/filtered/filtered.component';
 import { ActivationsComponent } from './components/admin/activations/activations.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ActivationsComponent } from './components/admin/activations/activations
     MatSidenavModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

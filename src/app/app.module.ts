@@ -26,6 +26,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HeaderAdminComponent } from './components/admin/header-admin/header-admin.component';
 import { UnhealthyComponent } from './components/admin/unhealthy/unhealthy.component';
 import { FilteredComponent } from './components/admin/filtered/filtered.component';
@@ -65,7 +67,9 @@ import { ActivationsComponent } from './components/admin/activations/activations
     MatSidenavModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,26 @@
+.main-toolbar {
+  color: white;
+  position: fixed;
+  z-index: 999;
+}
+.search-area {
+  height: 40px;
+  background-color: white;
+  color: black;
+  margin-left: 10px;
+  width: calc(100% - 30px);
+}
+
+.content {
+  width: 50%;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.notifications-button {
+  width: 30px;
+}
+
+.search-button {
+  margin-left: -34px;
+}

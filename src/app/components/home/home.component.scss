@@ -15,12 +15,20 @@
 }
 
 .img-article{
-  width: auto;
-  max-height: 700px;
+  max-width: 666px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
   display: block;
+
+  //width: auto;
+  //max-height: 700px;
+
+}
+.img-container {
+  max-height: 700px;
+  overflow: hidden;
 }
 
 .action-buttons, .post-action-buttons {
@@ -102,4 +110,8 @@
 }
 .load-more-content {
   padding: 0;
+}
+.err-msg {
+  margin: 10px;
+  text-align: center;
 }

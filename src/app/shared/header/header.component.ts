@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedDataService} from '../../services/sharedData.service';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {SharedDataService} from '../../services/sharedData.service';
 export class HeaderComponent implements OnInit {
   newNotifications;
 
-  constructor(private sharedDataService: SharedDataService) {
+  constructor(private sharedDataService: SharedDataService, public auth: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -19,5 +20,10 @@ export class HeaderComponent implements OnInit {
       console.log(this.newNotifications);
     });
     console.log('notific', this.newNotifications);
+  }
+
+  logout() {
+    console.log('out')
+    this.auth.logout();
   }
 }

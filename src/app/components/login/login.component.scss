@@ -17,7 +17,6 @@ mat-card-content {
 
 .error {
   padding: 16px;
-  width: 300px;
   color: white;
   background-color: red;
 }
@@ -25,4 +24,13 @@ mat-card-content {
 .button {
   display: flex;
   justify-content: flex-end;
+}
+
+.login-form {
+  margin-right: 300px;
+  width: 433px;
+  min-height: 300px;}
+
+.mat-form-field {
+  font-size: 22px;
 }

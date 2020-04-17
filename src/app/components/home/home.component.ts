@@ -8,6 +8,7 @@ import {Post} from '../../models/post.model';
 import {first} from 'rxjs/operators';
 import io from 'socket.io-client';
 import {SharedDataService} from "../../services/sharedData.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 
 @Component({
@@ -31,8 +32,10 @@ export class HomeComponent implements OnInit {
   postImg = null;
   errMsg = '';
   socket;
+  followers;
 
-  constructor(private store: Store<PostState>, private http: HttpClient, private sharedDataService: SharedDataService) {
+  constructor(private store: Store<PostState>, private http: HttpClient, private sharedDataService: SharedDataService,
+              private auth: AuthenticationService) {
     this.posts = store.select('posts');
   }
 
@@ -40,9 +43,11 @@ export class HomeComponent implements OnInit {
     this.skip = 0;
     this.limit = 20;
 
-    this.userId = '5e8bcb8fcec44089e8c21178';
+    this.userId = this.auth.getId();
 
-    this.userName = 'Pandaa'
+    this.userName = this.auth.getName();
+
+    this.followers = this.auth.getFollowers();
 
     this.sharedDataService.setsShowNotification(false);
 
@@ -197,7 +202,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadPosts() {
-    this.http.get('http://127.0.0.1:3000/get-posts/5e8bcb6c258256022cac8a0c&' + this.skip + '&' + this.limit)
+    this.http.get('http://127.0.0.1:3000/get-posts/' + this.userId + '&' + this.skip + '&' + this.limit)
       .subscribe(data => {
           for (const post of data['posts']) {
             this.store.dispatch(new PostActions.AddPost({
@@ -230,7 +235,7 @@ export class HomeComponent implements OnInit {
     // console.log(this.postImg);
 
     fd.append('notifyusers', this.postNotify + '');
-    fd.append('userid', '5e8bcb6c258256022cac8a0c');
+    fd.append('userid', this.userId);
 
     // console.log('inside 2')
 
@@ -262,8 +267,8 @@ export class HomeComponent implements OnInit {
   sendNotification() {
 
     this.socket.emit('getMsg', {
-      from: '5e8bcb6c258256022cac8a0c',
-      toid : ['5e8bcb6c258256022cac8a0c', '5e8bcb8fcec44089e8c21178'],
+      from: this.userId,
+      toid : this.followers,
       msg : 'user have new post',
       name : 'PANDA MAIN'
     });
@@ -276,7 +281,6 @@ export class HomeComponent implements OnInit {
     });
 
     this.socket.emit('username', this.userId);
-    this.socket.emit('username', '5e8bcb6c258256022cac8a0c');
   }
 
   private updateNotifications() {

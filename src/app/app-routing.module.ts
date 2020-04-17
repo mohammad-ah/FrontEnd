@@ -8,30 +8,31 @@ import { AdsComponent } from './components/admin/ads/ads.component';
 import {NotificationsComponent} from "./components/notifications/notifications.component";
 import {UsersComponent} from "./components/users/users.component";
 import {FollowingComponent} from "./components/following/following.component";
+import {AuthGuardService} from "./services/authGuard.service";
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
   {
     path: 'ads',
-    component: AdsComponent
+    component: AdsComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home', component: HomeComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'login', component: LoginComponent
   },
   {
-    path: 'notifications', component: NotificationsComponent
+    path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'users', component: UsersComponent
+    path: 'users', component: UsersComponent, canActivate: [AuthGuardService]
   }
   ,
   {
-    path: 'followings', component: FollowingComponent
+    path: 'followings', component: FollowingComponent, canActivate: [AuthGuardService]
   }
 ];
 

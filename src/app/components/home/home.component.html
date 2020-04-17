@@ -1,5 +1,4 @@
 <div>
-  <app-ad></app-ad>
   <mat-sidenav-container class="new-post-container">
     <mat-card class="new-post-card">
       <mat-card-header>
@@ -37,7 +36,7 @@
         <mat-card-header>
           <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
           <mat-card-title class="title">{{post.post.userid.username}}</mat-card-title>
-          <button mat-icon-button *ngIf="post.post.userid._id === userId" color="primary" aria-label="Example icon-button with a heart icon" class="edit-post"
+          <button mat-icon-button *ngIf="post.post.userid._id === userId || post.post.userid === userId" color="primary" aria-label="Example icon-button with a heart icon" class="edit-post"
                   id="post-edit_{{post.post._id}}" (click)="showDeleteSection(idx)">
             <mat-icon>more_vert</mat-icon></button>
           <div class="remove-post-cont" id="post-remove_{{post.post._id}}" [hidden]="delIdx !== idx">

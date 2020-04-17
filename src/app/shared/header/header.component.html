@@ -11,7 +11,7 @@
     <button mat-icon-button routerLink="notifications" *ngIf="!newNotifications" color="secondary" aria-label="Load more posts" class="notifications-button">
       <mat-icon>notifications</mat-icon></button>
 
-    <button mat-icon-button routerLink="logout" color="secondary" aria-label="Load more posts" class="logout-button">
+    <button *ngIf="auth.isLoggedIn()" mat-icon-button routerLink="logout" color="secondary" aria-label="Load more posts" class="logout-button" (click)="logout()">
       <mat-icon>exit_to_app</mat-icon> Logout</button>
   </div>
 </mat-toolbar>

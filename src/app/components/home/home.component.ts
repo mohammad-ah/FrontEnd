@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {PostState} from '../../store/states/post.state';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import * as PostActions from '../../store/actions/post.actions';
 import {Observable} from 'rxjs';
 import {Post} from '../../models/post.model';
 import {first} from 'rxjs/operators';
+import io from 'socket.io-client';
+import {SharedDataService} from "../../services/sharedData.service";
+
 
 @Component({
   selector: 'app-home',
@@ -22,10 +25,15 @@ export class HomeComponent implements OnInit {
   skip = 0;
   limit = 20;
   userId = null;
+  userName = null;
+  postText = null;
+  postNotify = false;
+  postImg = null;
+  errMsg = '';
+  socket;
 
-  constructor(private store: Store<PostState>, private http: HttpClient) {
+  constructor(private store: Store<PostState>, private http: HttpClient, private sharedDataService: SharedDataService) {
     this.posts = store.select('posts');
-    // console.log(this.posts);
   }
 
   ngOnInit(): void {
@@ -34,7 +42,14 @@ export class HomeComponent implements OnInit {
 
     this.userId = '5e8bcb8fcec44089e8c21178';
 
+    this.userName = 'Pandaa'
+
+    this.sharedDataService.setsShowNotification(false);
+
     this.loadPosts();
+
+    this.socketConnect();
+    this.updateNotifications();
   }
 
   showDeleteSection(index) {
@@ -55,13 +70,19 @@ export class HomeComponent implements OnInit {
 
   deletePost(index: any, id: any) {
     const res = this.posts.pipe(first()).subscribe(result => {
-      console.log(result);
       // const index = result.findIndex(objInItems => new String(objInItems.post['_id']).trim() === new String(id).trim());
       // console.log(index, id);
 
-      // invoke remove post API
+    this.http.post('http://127.0.0.1:3000/post/remove', {id})
+      .subscribe(data => {
+        console.log(data);
+        this.delIdx = null;
+        },
+        error => {
+          console.log(error);
+        });
 
-      this.store.dispatch(new PostActions.RemovePost(index));
+    this.store.dispatch(new PostActions.RemovePost(index));
     });
   }
 
@@ -74,7 +95,7 @@ export class HomeComponent implements OnInit {
       poss = JSON.parse(poss);
 
       const likeIndex = poss['likes'].findIndex(objInItems => new String(objInItems).trim() === new String(pid).trim());
-
+      console.log(likeIndex)
       if (likeIndex < 0) {
         if (poss['likes'] === undefined) {
           poss['likes'] = [pid];
@@ -83,6 +104,15 @@ export class HomeComponent implements OnInit {
         }
         this.store.dispatch(new PostActions.AddLike(idx, {post: poss}));
         // add like to DB
+
+        this.http.post('http://127.0.0.1:3000/likes/like', {userid: this.userId, postid: pid})
+          .subscribe(data => {
+              console.log(data);
+              this.delIdx = null;
+            },
+            error => {
+              console.log(error);
+            });
       }
       else {
         if (poss['likes'].length === 1) {
@@ -93,6 +123,14 @@ export class HomeComponent implements OnInit {
         this.store.dispatch(new PostActions.RemoveLike(idx, {post: poss}));
 
         // remove like from DB
+        this.http.post('http://127.0.0.1:3000/likes/dislike', {userid: this.userId, postid: pid})
+          .subscribe(data => {
+              console.log(data);
+              this.delIdx = null;
+            },
+            error => {
+              console.log(error);
+            });
       }
     });
   }
@@ -111,12 +149,12 @@ export class HomeComponent implements OnInit {
 
         // const likeIndex = poss['comments'].findIndex(objInItems => new String(objInItems).trim() === new String(pid).trim());
 
-        const bodyRequest = {};
+        const bodyRequest = {postid: pid, userid: this.userId, text: text};
 
         const comment = {
           text: text,
           userid: {
-            username: 'ANA',
+            username: this.userName,
             _id: this.userId
           }
         };
@@ -127,24 +165,18 @@ export class HomeComponent implements OnInit {
           poss['comments'].push(comment);
         }
 
+        this.http.post('http://127.0.0.1:3000/comments/create-comment', bodyRequest)
+          .subscribe(data => {
+              console.log(data);
+              this.delIdx = null;
+            },
+            error => {
+              console.log(error);
+            });
+
         this.store.dispatch(new PostActions.AddComment(idx, {post: poss}));
       });
     }
-    //   this.http.post('http://127.0.0.1:3000/add-comment/',
-    //     bodyRequest)
-    //     .subscribe(data => {
-    //       const post = data['comment'];
-    //       if (poss['comments'] === undefined) {
-    //         poss['comments'] = [post];
-    //       } else {
-    //         poss['comments'].push(post);
-    //       }
-    //       this.store.dispatch(new PostActions.AddLike(idx, {post: poss}));
-    //       },
-    //       error => {
-    //         console.log(error);
-    //       });
-    // });
   }
 
   loadMorePosts() {
@@ -159,11 +191,85 @@ export class HomeComponent implements OnInit {
             this.store.dispatch(new PostActions.AddPost({
               post
             }));
-            console.log(this.posts);
           }
         },
         error => {
           console.log(error);
         });
+  }
+
+  addPost() {
+    if (this.postText === null && this.postImg === null) {
+      this.errMsg = 'You should choose an image or write something!';
+      return;
+    }
+
+    console.log('inside')
+
+    let fd = new FormData();
+    if (this.postImg !== null) {
+      fd.append('image', this.postImg);
+    }
+    if (this.postText !== null) {
+      fd.append('text', this.postText);
+    }
+
+    // console.log(this.postText);
+    // console.log(this.postImg);
+
+    fd.append('notifyusers', this.postNotify + '');
+    fd.append('userid', '5e8bcb6c258256022cac8a0c');
+
+    // console.log('inside 2')
+
+    this.http.post('http://127.0.0.1:3000/post/create-post', fd)
+      .subscribe(data => {
+        console.log(data);
+        let post = data['post'];
+        post['likes'] = [];
+        post['comments'] = [];
+
+        this.store.dispatch(new PostActions.AddPostFirst({
+            post: post
+          }));
+        this.errMsg = null;
+
+        this.sendNotification();
+
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  imageSelected(event: Event) {
+    this.postImg = event.target['files'][0];
+  }
+
+  sendNotification() {
+
+    this.socket.emit('getMsg', {
+      from: '5e8bcb6c258256022cac8a0c',
+      toid : ['5e8bcb6c258256022cac8a0c', '5e8bcb8fcec44089e8c21178'],
+      msg : 'user have new post',
+      name : 'PANDA MAIN'
+    });
+    console.log('message emitted');
+  }
+
+  private socketConnect() {
+    this.socket = io('http://localhost:3000', {
+      transports: ['websocket']
+    });
+
+    this.socket.emit('username', this.userId);
+    this.socket.emit('username', '5e8bcb6c258256022cac8a0c');
+  }
+
+  private updateNotifications() {
+    this.socket.on('sendMsg', (data) => {
+      console.log('message recieved', data);
+      this.sharedDataService.setsShowNotification(true);
+    });
   }
 }

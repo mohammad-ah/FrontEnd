@@ -17,6 +17,8 @@ export function postsReducer(state: Post[] = [initialState], action: PostActions
       return state;
     case PostActions.ADD_POST:
       return [...state, action.payload];
+    case PostActions.ADD_FIRST:
+      return [action.post, ...state];
     case PostActions.REMOVE_POST:
       idx = action.payload;
       return [...state.slice(0, idx), ...state.slice(idx + 1)];

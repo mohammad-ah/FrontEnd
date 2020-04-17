@@ -5,10 +5,13 @@
     <button mat-icon-button color="primary" aria-label="Load more posts" class="search-button">
       <mat-icon>search</mat-icon></button>
 
-    <button mat-icon-button *ngIf="0" color="warn" aria-label="Load more posts" class="notifications-button">
+    <button mat-icon-button routerLink="notifications" *ngIf="newNotifications" color="warn" aria-label="Load more posts" class="notifications-button">
       <mat-icon>notifications_active</mat-icon></button>
 
-    <button mat-icon-button color="secondary" aria-label="Load more posts" class="notifications-button">
+    <button mat-icon-button routerLink="notifications" *ngIf="!newNotifications" color="secondary" aria-label="Load more posts" class="notifications-button">
       <mat-icon>notifications</mat-icon></button>
+
+    <button mat-icon-button routerLink="logout" color="secondary" aria-label="Load more posts" class="logout-button">
+      <mat-icon>exit_to_app</mat-icon> Logout</button>
   </div>
 </mat-toolbar>

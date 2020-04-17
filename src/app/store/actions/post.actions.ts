@@ -9,6 +9,7 @@ export const REMOVE_POST    = '[POST] Remove';
 export const ADD_LIKE    = '[POST] Like';
 export const REMOVE_LIKE    = '[POST] DisLike';
 export const ADD_COMMENT    = '[POST] Comment';
+export const ADD_FIRST    = '[POST] AddFirst';
 
 // Section 3
 export class AddPost implements Action {
@@ -47,5 +48,11 @@ export class AddComment implements Action {
   constructor(public idx: number, public post: any) {}
 }
 
+export class AddPostFirst implements Action {
+  readonly type = ADD_FIRST;
+
+  constructor(public post: any) {}
+}
+
 // Section 4
-export type Actions = ListPosts | AddPost | RemovePost | AddComment | AddLike | RemoveLike;
+export type Actions = ListPosts | AddPost | AddPostFirst | RemovePost | AddComment | AddLike | RemoveLike;

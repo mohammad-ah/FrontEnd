@@ -1,0 +1,14 @@
+<!--<div *ngFor="let notification of notifications ; let idx = index">-->
+<div>
+  <mat-sidenav-container class="followings-container">
+    <mat-card class="following-card" *ngFor="let following of followings; let idx = index">
+      <mat-card-content>
+        <div class="follow-content">
+          <span>{{following.username}}</span>
+          <button mat-button color="primary" class="funollow-button" (click)="unfollow(following._id)">UnFollow <mat-icon>person_add_disabled</mat-icon></button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-container>
+</div>
+

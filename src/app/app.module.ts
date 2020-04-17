@@ -31,6 +31,7 @@ import { FilteredComponent } from './components/admin/filtered/filtered.componen
 import { ActivationsComponent } from './components/admin/activations/activations.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NotificationsComponent} from "./components/notifications/notifications.component";
+import { AdComponent } from './components/home/ad/ad.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {NotificationsComponent} from "./components/notifications/notifications.c
     UnhealthyComponent,
     FilteredComponent,
     NotificationsComponent,
-    ActivationsComponent
+    ActivationsComponent,
+    AdComponent
   ],
   imports: [
     BrowserModule,

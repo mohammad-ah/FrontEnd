@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedDataService} from "../../services/sharedData.service";
+import {SharedDataService} from '../../services/sharedData.service';
 
 @Component({
   selector: 'app-header',
@@ -20,5 +20,4 @@ export class HeaderComponent implements OnInit {
     });
     console.log('notific', this.newNotifications);
   }
-
 }

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
@@ -20,19 +19,18 @@ import {MatListModule} from '@angular/material/list';
 import { AdsComponent } from './components/admin/ads/ads.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderAdminComponent } from './components/admin/header-admin/header-admin.component';
 import { UnhealthyComponent } from './components/admin/unhealthy/unhealthy.component';
 import { FilteredComponent } from './components/admin/filtered/filtered.component';
 import { ActivationsComponent } from './components/admin/activations/activations.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { NotificationsComponent } from './components/notifications/notifications.component';
+import {NotificationsComponent} from "./components/notifications/notifications.component";
 
 @NgModule({
   declarations: [
@@ -49,8 +47,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     HeaderAdminComponent,
     UnhealthyComponent,
     FilteredComponent,
-    ActivationsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ActivationsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,8 +68,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

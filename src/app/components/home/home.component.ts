@@ -94,13 +94,25 @@ export class HomeComponent implements OnInit {
       let poss = JSON.stringify(currentPost);
       poss = JSON.parse(poss);
 
-      const likeIndex = poss['likes'].findIndex(objInItems => new String(objInItems).trim() === new String(pid).trim());
+      console.log(poss['likes']);
+
+      // let likeIndex = poss['likes'].findIndex(objInItems => new String(objInItems).trim() === new String(this.userId).trim());
+      // if (likeIndex < 0) {
+        const likeIndex = poss['likes'].findIndex((objInItems) => {
+          console.log(objInItems);
+          if (objInItems.hasOwnProperty('userid')) {
+            return new String(objInItems.userid._id).trim() === new String(this.userId).trim();
+          } else {
+            return new String(objInItems).trim() === new String(this.userId).trim();
+          }
+        });
+      // }
       console.log(likeIndex)
       if (likeIndex < 0) {
         if (poss['likes'] === undefined) {
-          poss['likes'] = [pid];
+          poss['likes'] = [this.userId];
         } else {
-          poss['likes'].push(pid);
+          poss['likes'].push(this.userId);
         }
         this.store.dispatch(new PostActions.AddLike(idx, {post: poss}));
         // add like to DB
@@ -240,6 +252,7 @@ export class HomeComponent implements OnInit {
         error => {
           console.log(error);
         });
+    console.log('outside')
   }
 
   imageSelected(event: Event) {

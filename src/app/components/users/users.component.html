@@ -1,0 +1,13 @@
+<div>
+  <mat-sidenav-container class="users-container">
+    <mat-card class="user-card" *ngFor="let user of users ; let idx = index">
+      <mat-card-content>
+        <div class="user-content">
+          <span>{{user.username}}</span>
+          <button mat-flat-button color="primary" class="follow-button" (click)="follow(user._id)">Follow <mat-icon>person_add</mat-icon></button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-container>
+</div>
+

@@ -1,0 +1,23 @@
+.followings-container {
+  width: 700px;
+  height: auto;
+  border: 1px solid rgba(135, 135, 135, 0.5);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.following-card {
+  overflow: hidden;
+  border: 1px solid rgba(135, 135, 135, 0.5);
+  padding: 10px;
+  margin: 10px;
+}
+
+.follow-content {
+  line-height: 36px;
+}
+
+.funollow-button {
+  float: right;
+  border: 1px solid rgba(135, 135, 135, 0.5);
+}

@@ -32,6 +32,8 @@ import { ActivationsComponent } from './components/admin/activations/activations
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {NotificationsComponent} from "./components/notifications/notifications.component";
 import { AdComponent } from './components/home/ad/ad.component';
+import { UsersComponent } from './components/users/users.component';
+import { FollowingComponent } from './components/following/following.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { AdComponent } from './components/home/ad/ad.component';
     FilteredComponent,
     NotificationsComponent,
     ActivationsComponent,
-    AdComponent
+    AdComponent,
+    UsersComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,

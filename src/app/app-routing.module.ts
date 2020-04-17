@@ -6,6 +6,8 @@ import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/login/login.component';
 import { AdsComponent } from './components/admin/ads/ads.component';
 import {NotificationsComponent} from "./components/notifications/notifications.component";
+import {UsersComponent} from "./components/users/users.component";
+import {FollowingComponent} from "./components/following/following.component";
 
 
 const routes: Routes = [
@@ -23,6 +25,13 @@ const routes: Routes = [
   },
   {
     path: 'notifications', component: NotificationsComponent
+  },
+  {
+    path: 'users', component: UsersComponent
+  }
+  ,
+  {
+    path: 'followings', component: FollowingComponent
   }
 ];
 

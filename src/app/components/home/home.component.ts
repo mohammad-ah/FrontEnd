@@ -292,9 +292,9 @@ console.log(this.followers);
     this.http.get('http://127.0.0.1:3000/notifications/get/' + this.userId)
       .subscribe(data => {
           console.log(data);
-          this.notifications = data['notifications'];
+          const notifications = data['notifications'];
 
-          if (this.notifications.length > 0) {
+          if (notifications.length > 0) {
             this.sharedDataService.setsShowNotification(true);
           }
         },

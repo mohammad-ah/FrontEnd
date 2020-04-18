@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-notifications',
@@ -10,10 +11,10 @@ export class NotificationsComponent implements OnInit {
   userId;
   notifications;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.userId = '5e8bcb6c258256022cac8a0c';
+    this.userId = this.auth.getId();
     this.http.get('http://127.0.0.1:3000/notifications/get/' + this.userId)
       .subscribe(data => {
           console.log(data);

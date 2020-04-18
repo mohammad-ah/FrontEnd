@@ -231,9 +231,6 @@ export class HomeComponent implements OnInit {
       fd.append('text', this.postText);
     }
 
-    // console.log(this.postText);
-    // console.log(this.postImg);
-
     fd.append('notifyusers', this.postNotify + '');
     fd.append('userid', this.userId);
 
@@ -245,6 +242,7 @@ export class HomeComponent implements OnInit {
         let post = data['post'];
         post['likes'] = [];
         post['comments'] = [];
+        post['userid']['username'] = this.userName;
 
         this.store.dispatch(new PostActions.AddPostFirst({
             post: post
@@ -269,8 +267,8 @@ console.log(this.followers);
     this.socket.emit('getMsg', {
       from: this.userId,
       toid : this.followers,
-      msg : 'user have new post',
-      name : 'PANDA MAIN'
+      msg : 'user ' + this.userName + ' new post',
+      name : this.userName
     });
     console.log('message emitted');
   }

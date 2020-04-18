@@ -18,16 +18,28 @@ export class AdsComponent implements OnInit {
   }
 
   pushAd() {
-    this.adminService.pushAd({
-      text: this.text,
-      image: this.image,
-      isAll: this.isAll
-    }).subscribe(
+    const fd = new FormData();
+    fd.append('text', this.text);
+    fd.append('image', this.image);
+    fd.append('isAll', this.aString(this.isAll));
+    this.adminService.pushAd(fd).subscribe(
       data => {
         alert('ad pushed');
       },
       error => console.log(error)
     );
+  }
+
+  imageSelected(event: Event) {
+    this.image = event.target['files'][0];
+  }
+
+  aBoolean(fd): boolean {
+    return fd.get('aBoolean') === 'true' ? true : false;
+  }
+
+  aString(val: boolean): string {
+   return val ? 'true' : 'false';
   }
 
 }

@@ -1,6 +1,12 @@
 <div>
   Text: <input [(ngModel)]="text"><br>
   Image: <input [(ngModel)]="image"><br>
+  <button mat-button color="primary">
+    <label for="fileToUpload">
+      <mat-icon class="add-photo-icon">add_photo_alternate</mat-icon> Add Image
+    </label>
+  </button>
+  <input id="fileToUpload" type="file" accept="image/*" style="display:none;" (change)="imageSelected($event)">
   <input [(ngModel)]="isAll" type="checkbox"> Is All<br>
   <a mat-button (click)="pushAd()">Push</a>
 </div>

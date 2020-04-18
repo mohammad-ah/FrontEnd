@@ -17,8 +17,8 @@ export class AdminService {
     return this.httpClient.post('http://localhost:3000/admin/addFilter', {word});
   }
 
-  pushAd(body) {
-    return this.httpClient.post('http://localhost:3000/admin/pushAd', body);
+  pushAd(fd: FormData) {
+    return this.httpClient.post('http://localhost:3000/admin/pushAd', fd);
   }
 
   getUnhealthy() {

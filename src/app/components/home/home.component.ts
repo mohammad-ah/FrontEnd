@@ -265,7 +265,7 @@ export class HomeComponent implements OnInit {
   }
 
   sendNotification() {
-
+console.log(this.followers);
     this.socket.emit('getMsg', {
       from: this.userId,
       toid : this.followers,

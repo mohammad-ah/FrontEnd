@@ -109,6 +109,7 @@ export class AuthenticationService {
           this.saveId(data['user']._id);
           this.saveName(data['user'].username);
           this.saveFollowers(data['user'].followers);
+          console.log(data['user']);
         }
         return data;
       })

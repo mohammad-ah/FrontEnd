@@ -94,9 +94,9 @@ export class AuthenticationService {
     let base;
 
     if (method === 'post') {
-      base = this.http.post('http://localhost:3000/user/' + type, user);
+      base = this.http.post('https://lilcpanda-server.herokuapp.com/user/' + type, user);
     } else {
-      base = this.http.get('http://localhost:3000/user/' + type, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get('https://lilcpanda-server.herokuapp.com/' + type, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     console.log(base);

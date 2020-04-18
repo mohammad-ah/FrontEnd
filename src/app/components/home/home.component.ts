@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
       // const index = result.findIndex(objInItems => new String(objInItems.post['_id']).trim() === new String(id).trim());
       // console.log(index, id);
 
-    this.http.post('http://127.0.0.1:3000/post/remove', {id})
+    this.http.post('https://lilcpanda-server.herokuapp.com/post/remove', {id})
       .subscribe(data => {
         console.log(data);
         this.delIdx = null;
@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
         this.store.dispatch(new PostActions.AddLike(idx, {post: poss}));
         // add like to DB
 
-        this.http.post('http://127.0.0.1:3000/likes/like', {userid: this.userId, postid: pid})
+        this.http.post('https://lilcpanda-server.herokuapp.com/likes/like', {userid: this.userId, postid: pid})
           .subscribe(data => {
               console.log(data);
               this.delIdx = null;
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
         this.store.dispatch(new PostActions.RemoveLike(idx, {post: poss}));
 
         // remove like from DB
-        this.http.post('http://127.0.0.1:3000/likes/dislike', {userid: this.userId, postid: pid})
+        this.http.post('https://lilcpanda-server.herokuapp.com/likes/dislike', {userid: this.userId, postid: pid})
           .subscribe(data => {
               console.log(data);
               this.delIdx = null;
@@ -182,7 +182,7 @@ export class HomeComponent implements OnInit {
           poss['comments'].push(comment);
         }
 
-        this.http.post('http://127.0.0.1:3000/comments/create-comment', bodyRequest)
+        this.http.post('https://lilcpanda-server.herokuapp.com/comments/create-comment', bodyRequest)
           .subscribe(data => {
               console.log(data);
               this.delIdx = null;
@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadPosts() {
-    this.http.get('http://127.0.0.1:3000/get-posts/' + this.userId + '&' + this.skip + '&' + this.limit)
+    this.http.get('https://lilcpanda-server.herokuapp.com/get-posts/' + this.userId + '&' + this.skip + '&' + this.limit)
       .subscribe(data => {
           for (const post of data['posts']) {
             this.store.dispatch(new PostActions.AddPost({
@@ -239,7 +239,7 @@ export class HomeComponent implements OnInit {
 
     // console.log('inside 2')
 
-    this.http.post('http://127.0.0.1:3000/post/create-post', fd)
+    this.http.post('https://lilcpanda-server.herokuapp.com/post/create-post', fd)
       .subscribe(data => {
         console.log(data);
         let post = data['post'];
@@ -276,7 +276,7 @@ console.log(this.followers);
   }
 
   private socketConnect() {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io('https://lilcpanda-server.herokuapp.com', {
       transports: ['websocket']
     });
 

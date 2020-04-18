@@ -182,7 +182,7 @@ export class HomeComponent implements OnInit {
           poss['comments'].push(comment);
         }
 
-        this.http.post('https://lilcpanda-server.herokuapp.com/comments/create-comment', bodyRequest)
+        this.http.post('http://localhost:3000/comments/create-comment', bodyRequest)
           .subscribe(data => {
               console.log(data);
               this.delIdx = null;
@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadPosts() {
-    this.http.get('https://lilcpanda-server.herokuapp.com/get-posts/' + this.userId + '&' + this.skip + '&' + this.limit)
+    this.http.get('http://localhost:3000/get-posts/' + this.userId + '&' + this.skip + '&' + this.limit)
       .subscribe(data => {
           for (const post of data['posts']) {
             this.store.dispatch(new PostActions.AddPost({
@@ -236,13 +236,14 @@ export class HomeComponent implements OnInit {
 
     // console.log('inside 2')
 
-    this.http.post('https://lilcpanda-server.herokuapp.com/post/create-post', fd)
+    this.http.post('http://localhost:3000/post/create-post', fd)
       .subscribe(data => {
         console.log(data);
         let post = data['post'];
         post['likes'] = [];
         post['comments'] = [];
-        post['userid']['username'] = this.userName;
+        // post['userid']['username'] = this.userName;
+          this.postText = '';
 
         this.store.dispatch(new PostActions.AddPostFirst({
             post: post
@@ -274,7 +275,7 @@ console.log(this.followers);
   }
 
   private socketConnect() {
-    this.socket = io('https://lilcpanda-server.herokuapp.com', {
+    this.socket = io('http://localhost:3000', {
       transports: ['websocket']
     });
 
@@ -286,5 +287,19 @@ console.log(this.followers);
       console.log('message recieved', data);
       this.sharedDataService.setsShowNotification(true);
     });
+
+
+    this.http.get('http://127.0.0.1:3000/notifications/get/' + this.userId)
+      .subscribe(data => {
+          console.log(data);
+          this.notifications = data['notifications'];
+
+          if (this.notifications.length > 0) {
+            this.sharedDataService.setsShowNotification(true);
+          }
+        },
+        error => {
+          console.log(error);
+        });
   }
 }

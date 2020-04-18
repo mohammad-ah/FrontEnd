@@ -99,6 +99,8 @@ export class AuthenticationService {
       base = this.http.get('http://localhost:3000/user/' + type, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
+    console.log(base);
+
     const request = base.pipe(
       map((data) => {
         console.log(data)
@@ -121,5 +123,9 @@ export class AuthenticationService {
   }
 
 
+  register(value: any) {
+    return this.request('post', 'register', value);
+
+  }
 }
 

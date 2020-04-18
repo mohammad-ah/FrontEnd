@@ -9,6 +9,7 @@ import {NotificationsComponent} from "./components/notifications/notifications.c
 import {UsersComponent} from "./components/users/users.component";
 import {FollowingComponent} from "./components/following/following.component";
 import {AuthGuardService} from "./services/authGuard.service";
+import {RegisterComponent} from "./components/register/register.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,9 @@ const routes: Routes = [
   ,
   {
     path: 'followings', component: FollowingComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'register', component: RegisterComponent
   }
 ];
 

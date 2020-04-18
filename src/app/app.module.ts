@@ -34,6 +34,7 @@ import {NotificationsComponent} from "./components/notifications/notifications.c
 import { AdComponent } from './components/home/ad/ad.component';
 import { UsersComponent } from './components/users/users.component';
 import { FollowingComponent } from './components/following/following.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FollowingComponent } from './components/following/following.component';
     ActivationsComponent,
     AdComponent,
     UsersComponent,
-    FollowingComponent
+    FollowingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

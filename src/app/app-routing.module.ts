@@ -10,6 +10,7 @@ import {UsersComponent} from "./components/users/users.component";
 import {FollowingComponent} from "./components/following/following.component";
 import {AuthGuardService} from "./services/authGuard.service";
 import {RegisterComponent} from "./components/register/register.component";
+import {SearchComponent} from "./components/search/search.component";
 
 
 const routes: Routes = [
@@ -37,6 +38,9 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'search', component: SearchComponent
   }
 ];
 

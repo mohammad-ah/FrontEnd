@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedDataService} from '../../services/sharedData.service';
 import {AuthenticationService} from "../../services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,9 @@ import {AuthenticationService} from "../../services/authentication.service";
 })
 export class HeaderComponent implements OnInit {
   newNotifications;
+  search;
 
-  constructor(private sharedDataService: SharedDataService, public auth: AuthenticationService) {
+  constructor(private sharedDataService: SharedDataService, public auth: AuthenticationService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,5 +27,14 @@ export class HeaderComponent implements OnInit {
   logout() {
     console.log('out')
     this.auth.logout();
+  }
+
+  searchR() {
+    console.log(this.search)
+    this.router.navigate(['/search'], {
+      queryParams: {search: this.search}
+    });
+    // this.router.navigate(['/search/' + this.search]);
+    // // window.location.reload();
   }
 }

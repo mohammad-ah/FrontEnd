@@ -1,0 +1,117 @@
+.new-post-container {
+  //margin-top: 100px;
+}
+.post-card{
+  margin-bottom: -8px;
+}
+
+.example-header-image, .post-header-image {
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.title{
+  font-weight: bold;
+}
+
+.img-article{
+  max-width: 666px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  display: block;
+
+  //width: auto;
+  //max-height: 700px;
+
+}
+.img-container {
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.action-buttons, .post-action-buttons {
+  text-align: center;
+  border-top: 1px solid rgba(135, 135, 135, 0.5);
+}
+
+.action-buttons {
+  border-bottom: 1px solid rgba(135, 135, 135, 0.5);
+}
+
+.comments-container, .new-post-container {
+  width: 700px;
+  height: auto;
+  border: 1px solid rgba(135, 135, 135, 0.5);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-post {
+  right: 0;
+  position: absolute;
+}
+
+.remove-post-cont {
+  border: 1px solid rgba(135, 135, 135, 0.5);
+  right: 0;
+  position: absolute;
+  background-color: #f8f8f8fa;
+  min-width: 150px;
+  margin-top: 30px;
+}
+.remove-post {
+  width: 100%;
+}
+
+.post-text-area {
+  float: left;
+  width: 91%;
+}
+
+.post-header-image {
+  float: left;
+}
+.post-action-buttons {
+  clear: both;
+  color: #3f51b5;
+}
+.add-photo-icon {
+  vertical-align: middle;
+}
+.post-button {
+  vertical-align: bottom;
+}
+
+.comment-content {
+  word-break: break-word;
+}
+.comment-text-area {
+  width: 91%;
+}
+
+.new-post-card mat-card-title {
+  color: #3f51b5;
+}
+
+.post-card {
+  overflow: hidden;
+}
+
+.load-more-button {
+  width: 700px;
+  height: auto;
+  border: 1px solid rgba(135, 135, 135, 0.5);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #4d5ebb;
+  color: white;
+}
+.load-more-content {
+  padding: 0;
+}
+.err-msg {
+  margin: 10px;
+  text-align: center;
+}

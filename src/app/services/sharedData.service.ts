@@ -7,6 +7,7 @@ import {Observable, Subject} from "rxjs";
 export class SharedDataService {
   newNotification = new Subject();
   newNotification$ = this.newNotification.asObservable();
+  posts = [];
 
   constructor() { }
 

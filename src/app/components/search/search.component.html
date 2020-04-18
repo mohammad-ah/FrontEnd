@@ -1,0 +1,29 @@
+<div>
+  <div *ngFor="let post of posts; let idx = index">
+    <mat-sidenav-container class="comments-container" *ngIf="post._id" id="post_{{post._id}}">
+      <mat-card class="post-card">
+        <mat-card-header>
+          <div mat-card-avatar [ngStyle]="{'background-image': 'url(../../assets/test.jpg)'}" class="example-header-image"></div>
+          <mat-card-title class="title">{{post.userid.username}}</mat-card-title>
+        </mat-card-header>
+        <div class="img-container">
+          <img *ngIf="post.img" mat-card-image class="img-article" src="http://localhost:3000/{{post.img}}" alt="">
+        </div>
+        <mat-card-content>
+          <p>
+            {{post.text}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </mat-sidenav-container>
+  </div>
+
+  <mat-sidenav-container class="load-more">
+    <mat-card class="load-more-content">
+      <mat-card-content>
+        <button mat-icon-button color="primary" aria-label="Load more posts" class="load-more-button" (click)="loadMorePosts()">
+          <mat-icon>refresh</mat-icon></button>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-container>
+</div>

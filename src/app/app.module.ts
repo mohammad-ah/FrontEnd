@@ -35,6 +35,7 @@ import { AdComponent } from './components/home/ad/ad.component';
 import { UsersComponent } from './components/users/users.component';
 import { FollowingComponent } from './components/following/following.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RegisterComponent } from './components/register/register.component';
     AdComponent,
     UsersComponent,
     FollowingComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

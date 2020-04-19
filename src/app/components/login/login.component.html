@@ -17,6 +17,11 @@
   <button type="submit" mat-raised-button color="primary">Login</button>
 </div>
 
+  <p style="float: right">or</p>
+  <div class="button" style="clear: both">
+    <button type="button" routerLink="/register" mat-raised-button color="primary">Register</button>
+  </div>
+
   <p *ngIf="error" class="error">
     {{ error }}
   </p>

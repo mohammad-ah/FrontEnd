@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.auth.getId();
-    this.http.get('http://127.0.0.1:3000/notifications/get/' + this.userId)
+    this.http.get('https://lilcpanda-server.herokuapp.com/notifications/get/' + this.userId)
       .subscribe(data => {
           console.log(data);
           this.notifications = data['notifications'];
@@ -26,7 +26,7 @@ export class NotificationsComponent implements OnInit {
           }
 
           this.notifications.forEach(notification =>  {
-            this.http.post('http://127.0.0.1:3000/notifications/read/' + notification['_id'] + '/' + this.userId, {})
+            this.http.post('https://lilcpanda-server.herokuapp.com/notifications/read/' + notification['_id'] + '/' + this.userId, {})
               .subscribe(postData => {
                   console.log(postData);
                 },

@@ -10,34 +10,34 @@ export class AdminService {
   constructor(private httpClient: HttpClient ) { }
 
   getFiltered() {
-    return this.httpClient.get('http://localhost:3000/admin/filtered');
+    return this.httpClient.get('https://lilcpanda-server.herokuapp.com/admin/filtered');
   }
 
   editFilter(word: string) {
-    return this.httpClient.post('http://localhost:3000/admin/addFilter', {word});
+    return this.httpClient.post('https://lilcpanda-server.herokuapp.com/admin/addFilter', {word});
   }
 
   pushAd(fd: FormData) {
-    return this.httpClient.post('http://localhost:3000/admin/pushAd', fd);
+    return this.httpClient.post('https://lilcpanda-server.herokuapp.com/admin/pushAd', fd);
   }
 
   getUnhealthy() {
-    return this.httpClient.get('http://localhost:3000/admin/unhealthy-post');
+    return this.httpClient.get('https://lilcpanda-server.herokuapp.com/admin/unhealthy-post');
   }
 
   disableUnhealthy(id) {
-    return this.httpClient.post('http://localhost:3000/admin/disable-unhealthy', {id});
+    return this.httpClient.post('https://lilcpanda-server.herokuapp.com/admin/disable-unhealthy', {id});
   }
 
   getActivations() {
-    return this.httpClient.get('http://localhost:3000/admin/activations');
+    return this.httpClient.get('https://lilcpanda-server.herokuapp.com/admin/activations');
   }
 
   acceptActivation(id) {
-    return this.httpClient.post('http://localhost:3000/admin/accept-activation', {id});
+    return this.httpClient.post('https://lilcpanda-server.herokuapp.com/admin/accept-activation', {id});
   }
 
   refuseActivation(id) {
-    return this.httpClient.post('http://localhost:3000/admin/refuse-activation', {id});
+    return this.httpClient.post('https://lilcpanda-server.herokuapp.com/admin/refuse-activation', {id});
   }
 }

@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
 
   loadPosts() {
     console.log('loaded')
-    this.http.get('http://localhost:3000/post/search/' + this.userId + '&' + this.search + '&' + this.skip + '&' + this.limit)
+    this.http.get('https://lilcpanda-server.herokuapp.com/post/search/' + this.userId + '&' + this.search + '&' + this.skip + '&' + this.limit)
       .subscribe(data => {
         const d = data['posts'];
           this.posts = this.posts.concat(d);

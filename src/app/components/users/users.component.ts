@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.userId = this.auth.getId();
 
-    this.http.post('http://127.0.0.1:3000/user/list', {
+    this.http.post('https://lilcpanda-server.herokuapp.com/user/list', {
       id: this.userId
     })
       .subscribe(data => {
@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
   }
 
   follow(id: any) {
-    this.http.post('http://127.0.0.1:3000/user/follow', {
+    this.http.post('https://lilcpanda-server.herokuapp.com/user/follow', {
       id: this.userId,
       followerId: id
     })

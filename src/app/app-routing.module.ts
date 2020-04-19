@@ -11,6 +11,7 @@ import {FollowingComponent} from "./components/following/following.component";
 import {AuthGuardService} from "./services/authGuard.service";
 import {RegisterComponent} from "./components/register/register.component";
 import {SearchComponent} from "./components/search/search.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 
 const routes: Routes = [
@@ -41,6 +42,9 @@ const routes: Routes = [
   },
   {
     path: 'search', component: SearchComponent
+  },
+  {
+    path: 'profile/:id', component: ProfileComponent
   }
 ];
 

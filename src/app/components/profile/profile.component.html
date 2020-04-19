@@ -1,0 +1,27 @@
+<mat-card class="login-form">
+  <mat-card-title>Profile Info</mat-card-title>
+  <mat-card-content>
+    <form (ngSubmit)="submit()">
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Username" disabled [value]="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="email" matInput placeholder="email" [value]="email">
+      </mat-form-field>
+
+      <div class="button">
+        <button type="submit" mat-raised-button color="primary">Update</button>
+      </div>
+      <p *ngIf="msg" class="error">
+        {{ msg }}
+      </p>
+
+    </form>
+  </mat-card-content>
+</mat-card>

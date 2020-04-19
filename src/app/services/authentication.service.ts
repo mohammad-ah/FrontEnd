@@ -12,6 +12,7 @@ export class AuthenticationService {
   private id;
   private name;
   private followers;
+  private email;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -28,6 +29,11 @@ export class AuthenticationService {
   private saveName(name: any | string) {
     localStorage.setItem('mean-name', name);
     this.name = name;
+  }
+
+  private saveEmail(email: any | string) {
+    localStorage.setItem('mean-email', email);
+    this.email = email;
   }
 
   private saveFollowers(followers: any ) {
@@ -51,7 +57,7 @@ export class AuthenticationService {
 
   public getName(): string {
     if (!this.name) {
-      this.name = localStorage.getItem('mean-id');
+      this.name = localStorage.getItem('mean-name');
     }
     return this.name;
   }
@@ -108,6 +114,7 @@ export class AuthenticationService {
           this.saveToken(data['token']);
           this.saveId(data['user']._id);
           this.saveName(data['user'].username);
+          this.saveEmail(data['user'].email);
           this.saveFollowers(data['user'].followers);
           console.log(data['user']);
         }
@@ -127,6 +134,13 @@ export class AuthenticationService {
   register(value: any) {
     return this.request('post', 'register', value);
 
+  }
+
+  getEmail() {
+    if (!this.email) {
+      this.email = localStorage.getItem('mean-email');
+    }
+    return this.email;
   }
 }
 
